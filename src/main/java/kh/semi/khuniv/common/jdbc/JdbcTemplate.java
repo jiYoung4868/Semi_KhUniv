@@ -1,5 +1,5 @@
 
-package common;
+package kh.semi.khuniv.common.jdbc;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,7 +20,7 @@ public class JdbcTemplate {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","semijy","semijy");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","SEMIJY","SEMIJY");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

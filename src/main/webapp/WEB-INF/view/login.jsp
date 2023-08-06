@@ -63,17 +63,20 @@
     </div>
    
         <div>
+        <form action= "<%=request.getContextPath()%>/login.do" method="post">
+        
         <input type="text" name="id" placeholder="아이디를 입력해주세요."><br>
         <input type="text" name="pwd" placeholder="비밀번호를 입력해주세요.">
         </div>
         <div class="who">
-            <label for="who-1">교직원 </label>
-            <input type="checkbox" id="id1">
-            <label for="who-2">학생</label>
-            <input type="checkbox" id="id2">
+            <input type="radio" id="professor" name="who" value="p">
+            <label for="professor">교직원</label>
+            <input type="radio" id="student" name="who" value="s">
+            <label for="student">학생</label><br>
         </div>
         <div>
             <input type="submit" value="로그인">
+        </form>
     </div>
     <div>
         <p>아이디찾기</p>
