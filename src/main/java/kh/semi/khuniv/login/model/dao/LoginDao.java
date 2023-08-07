@@ -21,7 +21,7 @@ public class LoginDao {
 			pstmt.setString(1, studentNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				result = rs.getString("pwd");
+				result = rs.getString("STUDENT_PWD");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class LoginDao {
 			pstmt.setString(1, professorNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				result = rs.getString("pwd");
+				result = rs.getString("PROFESSOR_PWD");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

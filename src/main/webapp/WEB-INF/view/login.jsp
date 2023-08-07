@@ -65,14 +65,15 @@
         <div>
         <form action= "<%=request.getContextPath()%>/login.do" method="post">
         
-        <input type="text" name="id" placeholder="아이디를 입력해주세요."><br>
-        <input type="text" name="pwd" placeholder="비밀번호를 입력해주세요.">
+        <input type="text" name="id" placeholder="아이디를 입력해주세요." required><br>
+        <input type="text" name="pwd" placeholder="비밀번호를 입력해주세요." required>
         </div>
         <div class="who">
+            <input type="radio" id="student" name="who" value="s" checked>
+            <label for="student">학생</label><br>
             <input type="radio" id="professor" name="who" value="p">
             <label for="professor">교직원</label>
-            <input type="radio" id="student" name="who" value="s">
-            <label for="student">학생</label><br>
+
         </div>
         <div>
             <input type="submit" value="로그인">

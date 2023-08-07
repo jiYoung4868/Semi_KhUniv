@@ -151,7 +151,7 @@
             <div class="top-menu">
                 <table>
                     <tr>
-                        <td>login</td>
+                        <td><a href="<%=request.getContextPath()%>/login">login</a></td>
                     </tr>
                 </table>
             </div>

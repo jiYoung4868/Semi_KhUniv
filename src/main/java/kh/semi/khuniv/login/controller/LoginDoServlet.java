@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kh.semi.khuniv.common.model.dto.ProfessorVo;
 import kh.semi.khuniv.login.model.service.LoginService;
-import kh.semi.khuniv.student.model.dto.StudentVo;
 
 
 
@@ -39,10 +38,9 @@ public class LoginDoServlet extends HttpServlet {
 		}
 		if(result != null && pwd.equals(result)) {
 			System.out.println("[jy] 로그인 성공");
-//			request.setAttribute("loginId", mid);
-//			request.getSession().setAttribute("successFailMsg", "로그인성공");
-//			request.getSession().setAttribute("SsLoginId", mid);
-//			sendUrl += "/board/list"; 
+			request.setAttribute("loginId", id);
+			request.getSession().setAttribute("successFailMsg", "로그인성공");
+			request.getSession().setAttribute("loginId", id);
 		} else {
 			System.out.println("[jy] 로그인 실패");
 		}
