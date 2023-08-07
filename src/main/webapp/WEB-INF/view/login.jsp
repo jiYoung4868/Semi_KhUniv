@@ -50,6 +50,12 @@
 </head>
 
 <body>
+	<script>
+	var msg = '${Msg}';
+	if(msg){
+		alert(msg);
+	}
+</script>
     <header>
     </header>
     <div class="login-box">

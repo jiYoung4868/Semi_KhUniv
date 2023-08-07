@@ -21,7 +21,7 @@ public class StudentVo {
 		this.studentNo = studentNo;
 		this.studentPwd = studentPwd;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "StudentVo [studentNo=" + studentNo + ", studentName=" + studentName + ", studentPhone=" + studentPhone

@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kh.semi.khuniv.common.model.dto.ProfessorVo;
+import kh.semi.khuniv.login.model.dto.LoginVo;
 import kh.semi.khuniv.login.model.service.LoginService;
+import kh.semi.khuniv.student.model.dto.StudentVo;
 
 
 
@@ -26,21 +28,22 @@ public class LoginDoServlet extends HttpServlet {
 		
 		String who = request.getParameter("who");
 		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd"); //입력받은 pwd
-		String result = null;  //  db저장된 pwd
+		String pwd = request.getParameter("pwd");
+		LoginVo result = null;  
 		String sendUrl = request.getContextPath();
 		
 		if(who.equals("s")) {
-			result = service.sLogin(id);
-			System.out.println("[jy] service.sLogin id:" + id);
+			StudentVo vo = new StudentVo(id, pwd);
+			result = service.sLogin(vo);
 		}else {
-			result = service.pLogin(id);
+			ProfessorVo vo = new ProfessorVo(id, pwd);
+			result = service.pLogin(vo);
 		}
-		if(result != null && pwd.equals(result)) {
+		System.out.println("[jy] service.login result:" + result);
+		if(result != null) {
 			System.out.println("[jy] 로그인 성공");
-			request.setAttribute("loginId", id);
-			request.getSession().setAttribute("successFailMsg", "로그인성공");
-			request.getSession().setAttribute("loginId", id);
+			request.getSession().setAttribute("msg", result.getMemberName()+"님 반갑습니다.");
+			request.getSession().setAttribute("loginId", result);
 		} else {
 			System.out.println("[jy] 로그인 실패");
 		}
