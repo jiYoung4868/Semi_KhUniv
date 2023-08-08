@@ -18,5 +18,13 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+// 공지사항 게시글 추가
+	public int insert(NoticeVo vo) {
+		int result = 0;
+		Connection conn = getConnectionKh();
+		result = dao.insert(conn, vo);
+		close(conn);
+		return result;
+	}
 	
 }

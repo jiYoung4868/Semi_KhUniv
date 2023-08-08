@@ -7,26 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.semi.khuniv.notice.dto.NoticeVo;
-import kh.semi.khuniv.notice.dto.model.service.NoticeService;
-
 /**
- * Servlet implementation class NoticeInsertServlet
+ * Servlet implementation class NoticeSelectServlet
  */
-@WebServlet("/newnotice")
-public class NoticeInsertServlet extends HttpServlet {
+@WebServlet("/NoticeSelectServlet")
+public class NoticeSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("WEB-INF/view/notice/insert.jsp").forward(request, response);
-		
+
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+		doGet(request, response);
 	}
 
 }

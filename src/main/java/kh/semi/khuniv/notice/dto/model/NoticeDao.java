@@ -12,7 +12,7 @@ import kh.semi.khuniv.notice.dto.NoticeVo;
 
 public class NoticeDao {
 	
-	//공지게시판 리스트
+	// 공지사항 게시판 리스트
 	public List<NoticeVo> noticeList(Connection conn){
 		System.out.println("[jy] noticeList");
 		List<NoticeVo> result = new ArrayList<NoticeVo>();
@@ -43,6 +43,27 @@ public class NoticeDao {
 			close(pstmt);
 		}
 		System.out.println("[jy] noticeList.return: " + result);
+		return result;
+	}
+	
+	// 공지사항 게시글 추가
+	public int insert(Connection conn, NoticeVo vo) {
+		System.out.println("[jy] NoticeDao.insert.vo:" + vo);
+		int result = 0;
+		String query = "INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL, ? , ? , default, ? )";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, vo.getNoticeTitle());
+			pstmt.setString(2, vo.getNoticeContent());
+			pstmt.setString(3, vo.getWriter());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("[jy] NoticeDao.insert.result: " + result);
 		return result;
 	}
 }
