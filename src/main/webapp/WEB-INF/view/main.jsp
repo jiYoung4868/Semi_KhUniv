@@ -177,7 +177,7 @@ header>.main-menu {
 	<div class="main-content">
 		<table class="notice-table">
 			<tr>
-				<td>공지사항</td>
+				<td><a href="<%=request.getContextPath()%>/notice">공지사항</a></td>
 				<td>notice content</td>
 				<td>button</td>
 				<td>banner</td>

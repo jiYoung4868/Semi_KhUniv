@@ -13,6 +13,27 @@ public class NoticeVo {
 	private String nWRittenTime;
 	private String writer; //tb professor
 	
+	//공지사항 게시판 리스트
+	public NoticeVo() {
+		super();
+	}
+	
+	public NoticeVo(String noticeNo, String noticeTitle, String nWRittenTime, String writer) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.nWRittenTime = nWRittenTime;
+		this.writer = writer;
+	}
+	
+	//공지사항 게시글 추가
+	public NoticeVo(String noticeTitle, String noticeContent, String writer) {
+		super();
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.writer = writer;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeVo [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
