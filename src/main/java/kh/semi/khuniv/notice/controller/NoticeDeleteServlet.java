@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kh.semi.khuniv.notice.model.service.NoticeService;
+
 /**
  * Servlet implementation class NoticeDeleteServlet
  */
@@ -20,6 +22,12 @@ public class NoticeDeleteServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String noticeNo = request.getParameter("noticeNo");
+		System.out.println("[jy] NoticeDeleteServlet.doPost.noticeNo: " + noticeNo);
+		NoticeService service = new NoticeService();
+		int result = service.delete(noticeNo);
+		System.out.println("[jy] NoticeDeleteServlet.doPost.result: " + result);
+		response.sendRedirect(request.getContextPath() + "/notice");
+		
 	}
 
 }

@@ -99,13 +99,11 @@ header>.main-menu {
 	height: 50px;
 	border: 1px solid black;
 	margin-top: auto;
-	border-collapse: collapse;
 }
 
 .notice-table td {
 	border: 1px solid black;
 	text-align: center;
-	cursor: pointer;
 }
 
 .lower-content {
@@ -141,7 +139,6 @@ header>.main-menu {
 .noticeTable {
 	width: 600px;
 	border: 1px solid black;
-	border-collapse: collapse;
 }
 
 .noticeTable td {
@@ -149,7 +146,6 @@ header>.main-menu {
 	margin: 0px;
 	padding: 0px;
 	text-align: center;
-	cursor: pointer;
 }
 
 .noticeTitle {
@@ -170,14 +166,6 @@ header>.main-menu {
 	margin: 5px;
 }
 </style>
-<script>
-	function cellClicked(event) {
-		var cellText = event.target.textContent;
-
-		// 원하는 동작 수행 (예: 경고창 표시)
-		alert("클릭한 셀의 내용: " + cellText);
-	}
-</script>
 </head>
 
 <body>
@@ -210,7 +198,7 @@ header>.main-menu {
 	<div class="main-content">
 		<table class="notice-table">
 			<tr>
-				<a href="<%=request.getContextPath()%>/notice"><td>공지사항</td></a>
+				<td><a href="<%=request.getContextPath()%>/notice">공지사항</a></td>
 				<td>notice content</td>
 				<td><a href="<%=request.getContextPath()%>/newnotice">글쓰기</a></td>
 				<td>banner</td>
@@ -232,10 +220,12 @@ header>.main-menu {
 				<c:if test="${not empty noticeList}">
 					<c:forEach items="${noticeList}" var="nvo">
 						<tr>
+
 							<td>${nvo.noticeNo}</td>
-							<td>${nvo.noticeTitle}</td>
+							<td><a href="<%=request.getContextPath()%>/selectnotice?noticeNo=${nvo.noticeNo}">${nvo.noticeTitle}</a></td>
 							<td>${nvo.writer}</td>
 							<td>${nvo.nWRittenTime}</td>
+
 						</tr>
 					</c:forEach>
 				</c:if>

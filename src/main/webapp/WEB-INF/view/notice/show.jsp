@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -177,38 +178,37 @@ textarea {
 	<div class="main-content">
 		<table class="notice-table">
 
-
-
 			<tr>
 				<td><a href="<%=request.getContextPath()%>/notice">공지사항</a></td>
 				<td>notice content</td>
-				<c:if test="${loginId.memberId eq NoticeVo.writer}">
-				<form action="<%=request.getContextPath()%>/delnotice" method="post">
-				<input type="hidden" name="noticeNo" value="글 번호 들어갈 예정">
-				<td><button type="submit" id="btnDelete">글 삭제</button></td>
-				</form>
-				<td><button type="button" id="btnUpdate">글 수정</button></td>
-				</c:if>
+<%-- <c:if test="${loginId.memberId eq NoticeVo.writer}"> --%>
+ 					<form action="<%=request.getContextPath()%>/delnotice" method="post"> 
+						<input type="hidden" name="noticeNo" value="${nvo.noticeTitle}"> 
+						<td><button type="submit" id="btnDelete">글 삭제</button></td>
+					</form>
+					<td><button type="button" id="btnUpdate">글 수정</button></td>
+<%--  				</c:if>  --%>
 			</tr>
 		</table>
 	</div>
 
 	<table class="noticeContent">
-		<tr>
-			<td><strong>글 번호</strong></td>
-			<td class="nno">글 번호 들어갈 예정</td>
-		<tr>
-			<td><strong>제목</strong></td>
-			<td class="ntitle">제목이 들어갈 예정</td>
-		</tr>
-		<tr>
-			<td><br></td>
-		</tr>
-		<tr>
-			<td><strong>내용</strong></td>
-			<td class="ncontent">내용이 들어갈 예정</td>
-		</tr>
-
+		<c:if test="${not empty nvo}">
+			<tr>
+				<td><strong>글 번호</strong></td>
+				<td>${nvo.noticeTitle}</td>
+			<tr>
+				<td><strong>제목</strong></td>
+				<td>${nvo.noticeContent}</td>
+			</tr>
+			<tr>
+				<td><br></td>
+			</tr>
+			<tr>
+				<td><strong>내용</strong></td>
+				<td>${nvo.writer}</td>
+			</tr>
+		</c:if>
 		</form>
 	</table>
 

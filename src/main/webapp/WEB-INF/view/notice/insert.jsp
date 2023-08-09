@@ -148,7 +148,7 @@ textarea {
 </style>
 
 </head>
-[[ ${ loginId }]]
+
 <c:if test="${empty loginId }">
 	<script>
 		alert("글작성은 로그인 후 사용가능합니다.");

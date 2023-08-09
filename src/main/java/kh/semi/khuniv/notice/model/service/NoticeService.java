@@ -35,5 +35,13 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+//공지사항 게시글 선택
+	public NoticeVo selectOne(String noticeNo) {
+		NoticeVo result = null;
+		Connection conn = getConnectionKh();
+		result = dao.selectOne(conn, noticeNo);
+		close(conn);
+		return result;
+	}
 	
 }
