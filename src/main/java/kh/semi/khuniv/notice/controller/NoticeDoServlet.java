@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.semi.khuniv.notice.dto.NoticeVo;
-import kh.semi.khuniv.notice.dto.model.service.NoticeService;
+import kh.semi.khuniv.login.model.dto.LoginVo;
+import kh.semi.khuniv.notice.model.dto.NoticeVo;
+import kh.semi.khuniv.notice.model.service.NoticeService;
 
 /**
  * Servlet implementation class NoticeDoServlet
@@ -40,9 +41,9 @@ public class NoticeDoServlet extends HttpServlet {
 		System.out.println("[jy] NoticeInsert.dopost");
 		String nTitle = request.getParameter("nTitle");
 		String nContent= request.getParameter("nContent");
-		String nWriter = "P084"; //TODO 로그인 id로 설정 예정
+		LoginVo vo = (LoginVo)request.getSession().getAttribute("loginId");
 				
-		int result = service.insert(new NoticeVo(nTitle, nContent, nWriter));
+		int result = service.insert(new NoticeVo(nTitle, nContent, vo.getMemberId()));
 		
 		response.sendRedirect(request.getContextPath() + "/notice");
 	}

@@ -1,4 +1,4 @@
-package kh.semi.khuniv.notice.dto;
+package kh.semi.khuniv.notice.model.dto;
 
 public class NoticeVo {
 //	NOTICE_NO      NOT NULL NUMBER         

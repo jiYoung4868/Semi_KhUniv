@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,7 +148,13 @@ textarea {
 </style>
 
 </head>
-
+[[ ${ loginId }]]
+<c:if test="${empty loginId }">
+	<script>
+		alert("글작성은 로그인 후 사용가능합니다.");
+		location.href="${pageContext.request.contextPath}/login";
+	</script>
+</c:if>
 <body>
 	<div class="wrap-header">
 		<header>

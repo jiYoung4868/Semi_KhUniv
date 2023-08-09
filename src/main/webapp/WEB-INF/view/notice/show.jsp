@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-<title>Document</title>
+<title>Insert title here</title>
 
 <link rel="stylesheet" href="/resources/css/reset.css">
 
@@ -99,13 +97,11 @@ header>.main-menu {
 	height: 50px;
 	border: 1px solid black;
 	margin-top: auto;
-	border-collapse: collapse;
 }
 
 .notice-table td {
 	border: 1px solid black;
 	text-align: center;
-	cursor: pointer;
 }
 
 .lower-content {
@@ -130,54 +126,25 @@ header>.main-menu {
 }
 </style>
 <style>
-.notice {
+.noticeContent {
 	width: 1600px;
+	height: 300px;
 	display: flex;
 	justify-content: center;
-	position: relative;
-	margin: 10px;
-}
-
-.noticeTable {
-	width: 600px;
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-
-.noticeTable td {
-	border: 1px solid black;
-	margin: 0px;
-	padding: 0px;
-	text-align: center;
-	cursor: pointer;
-}
-
-.noticeTitle {
-	text-align: center;
-}
-
-.noticeList {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	text-align: center;
 	align-items: center;
+	margin: 10px;
+	position: relative;
 }
 
-.listName {
-	border: 1px solid black;
-	padding: 10px;
-	margin: 5px;
+.nsubmit {
+	text-align: center;
+}
+
+textarea {
+	resize: none;
 }
 </style>
-<script>
-	function cellClicked(event) {
-		var cellText = event.target.textContent;
 
-		// 원하는 동작 수행 (예: 경고창 표시)
-		alert("클릭한 셀의 내용: " + cellText);
-	}
-</script>
 </head>
 
 <body>
@@ -209,41 +176,42 @@ header>.main-menu {
 	</div>
 	<div class="main-content">
 		<table class="notice-table">
+
+
+
 			<tr>
-				<a href="<%=request.getContextPath()%>/notice"><td>공지사항</td></a>
+				<td><a href="<%=request.getContextPath()%>/notice">공지사항</a></td>
 				<td>notice content</td>
-				<td><a href="<%=request.getContextPath()%>/newnotice">글쓰기</a></td>
-				<td>banner</td>
+				<c:if test="${loginId.memberId eq NoticeVo.writer}">
+				<form action="<%=request.getContextPath()%>/delnotice" method="post">
+				<input type="hidden" name="noticeNo" value="글 번호 들어갈 예정">
+				<td><button type="submit" id="btnDelete">글 삭제</button></td>
+				</form>
+				<td><button type="button" id="btnUpdate">글 수정</button></td>
+				</c:if>
 			</tr>
 		</table>
 	</div>
 
+	<table class="noticeContent">
+		<tr>
+			<td><strong>글 번호</strong></td>
+			<td class="nno">글 번호 들어갈 예정</td>
+		<tr>
+			<td><strong>제목</strong></td>
+			<td class="ntitle">제목이 들어갈 예정</td>
+		</tr>
+		<tr>
+			<td><br></td>
+		</tr>
+		<tr>
+			<td><strong>내용</strong></td>
+			<td class="ncontent">내용이 들어갈 예정</td>
+		</tr>
 
-	<div class="notice">
-		`
-		<table class="noticeTable">
-			<thead>
-				<tr>
-					<td>No</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td>작성일</td>
-				</tr>
-				<c:if test="${not empty noticeList}">
-					<c:forEach items="${noticeList}" var="nvo">
-						<tr>
-							<td>${nvo.noticeNo}</td>
-							<td>${nvo.noticeTitle}</td>
-							<td>${nvo.writer}</td>
-							<td>${nvo.nWRittenTime}</td>
-						</tr>
-					</c:forEach>
-				</c:if>
-			</thead>
-		</table>
+		</form>
+	</table>
 
-	</div>
-	</div>
 	<div class="lower-content">
 		<table class="menu-button">
 			<tr>

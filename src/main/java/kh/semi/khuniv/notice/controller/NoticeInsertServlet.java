@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.semi.khuniv.notice.dto.NoticeVo;
-import kh.semi.khuniv.notice.dto.model.service.NoticeService;
+import kh.semi.khuniv.notice.model.dto.NoticeVo;
+import kh.semi.khuniv.notice.model.service.NoticeService;
 
 /**
  * Servlet implementation class NoticeInsertServlet
