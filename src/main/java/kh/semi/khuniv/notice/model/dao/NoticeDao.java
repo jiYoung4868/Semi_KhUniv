@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kh.semi.khuniv.notice.model.dto.NoticeVo;
+import kh.semi.khuniv.notice.model.dto.NoticeVoRes;
 
 public class NoticeDao {
 
@@ -16,7 +17,7 @@ public class NoticeDao {
 		System.out.println("[jy] NoticeDao.noticeList");
 		List<NoticeVo> result = new ArrayList<NoticeVo>();
 
-		String query = "SELECT ROWNUM NOTICE_NO, NOTICE_TITLE, NWRITTEN_TIME, WRITER FROM NOTICELIST";
+		String query = "SELECT NOTICE_NO, NOTICE_TITLE, NWRITTEN_TIME, WRITER FROM NOTICELIST";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -84,10 +85,10 @@ public class NoticeDao {
 	}
 
 	// 공지사항 게시글 선택
-	public NoticeVo selectOne(Connection conn, String noticeNo) {
+	public NoticeVoRes selectOne(Connection conn, String noticeNo) {
 		System.out.println("[jy] NoticeDao.selectOne.noticeNo: " + noticeNo);
-		NoticeVo result = null;
-		String query = "SELECT NOTICE_TITLE, NOTICE_CONTENT, NOTICE_NO FROM NOTICE WHERE NOTICE_NO = ? ";
+		NoticeVoRes result = null;
+		String query = "SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT FROM NOTICE WHERE NOTICE_NO = ? ";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -96,7 +97,7 @@ public class NoticeDao {
 			pstmt.setString(1, noticeNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				result = new NoticeVo(rs.getString("NOTICE_NO"), rs.getString("NOTICE_TITLE"),
+				result = new NoticeVoRes(rs.getString("NOTICE_NO"), rs.getString("NOTICE_TITLE"),
 						rs.getString("NOTICE_CONTENT"));
 			}
 		} catch (Exception e) {

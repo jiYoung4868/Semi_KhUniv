@@ -132,9 +132,22 @@ header>.main-menu {
 	height: 300px;
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	margin: 10px;
 	position: relative;
+}
+
+.noticeContent td {
+	border: 1px solid black;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.Contentcontent {
+	width: 400px;
+	height: 200px;
+	border: 1px solid black;
+	text-align: initial;
 }
 
 .nsubmit {
@@ -181,13 +194,13 @@ textarea {
 			<tr>
 				<td><a href="<%=request.getContextPath()%>/notice">공지사항</a></td>
 				<td>notice content</td>
-<%-- <c:if test="${loginId.memberId eq NoticeVo.writer}"> --%>
- 					<form action="<%=request.getContextPath()%>/delnotice" method="post"> 
-						<input type="hidden" name="noticeNo" value="${nvo.noticeTitle}"> 
-						<td><button type="submit" id="btnDelete">글 삭제</button></td>
-					</form>
-					<td><button type="button" id="btnUpdate">글 수정</button></td>
-<%--  				</c:if>  --%>
+				<%-- <c:if test="${loginId.memberId eq NoticeVo.writer}"> --%>
+				<form action="<%=request.getContextPath()%>/delnotice" method="post">
+					<input type="hidden" name="noticeNo" value="${nvo.noticeNo}">
+					<td><button type="submit" id="btnDelete">글 삭제</button></td>
+				</form>
+				<td><button type="button" id="btnUpdate">글 수정</button></td>
+				<%--  				</c:if>  --%>
 			</tr>
 		</table>
 	</div>
@@ -196,17 +209,14 @@ textarea {
 		<c:if test="${not empty nvo}">
 			<tr>
 				<td><strong>글 번호</strong></td>
-				<td>${nvo.noticeTitle}</td>
+				<td>${nvo.noticeNo}</td>
 			<tr>
 				<td><strong>제목</strong></td>
-				<td>${nvo.noticeContent}</td>
-			</tr>
-			<tr>
-				<td><br></td>
+				<td>${nvo.noticeTitle}</td>
 			</tr>
 			<tr>
 				<td><strong>내용</strong></td>
-				<td>${nvo.writer}</td>
+				<td class="Contentcontent">${nvo.noticeContent}</td>
 			</tr>
 		</c:if>
 		</form>

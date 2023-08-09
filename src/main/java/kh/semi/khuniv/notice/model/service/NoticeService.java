@@ -5,6 +5,7 @@ import java.util.List;
 
 import kh.semi.khuniv.notice.model.dao.NoticeDao;
 import kh.semi.khuniv.notice.model.dto.NoticeVo;
+import kh.semi.khuniv.notice.model.dto.NoticeVoRes;
 
 import static kh.semi.khuniv.common.jdbc.JdbcTemplate.*;
 
@@ -36,8 +37,8 @@ public class NoticeService {
 		return result;
 	}
 //공지사항 게시글 선택
-	public NoticeVo selectOne(String noticeNo) {
-		NoticeVo result = null;
+	public NoticeVoRes selectOne(String noticeNo) {
+		NoticeVoRes result = null;
 		Connection conn = getConnectionKh();
 		result = dao.selectOne(conn, noticeNo);
 		close(conn);
