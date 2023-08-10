@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-<title>Document</title>
+<title>새 공지 작성</title>
 
 <link rel="stylesheet" href="/resources/css/reset.css">
 
@@ -155,6 +155,12 @@ textarea {
 		location.href="${pageContext.request.contextPath}/login";
 	</script>
 </c:if>
+<%-- <c:if test="${not empty loginId }">
+	<script>
+		alert("글작성은 로그인 후 사용가능합니다.");
+		location.href="${pageContext.request.contextPath}/login";
+	</script>
+</c:if> --%>
 <body>
 	<div class="wrap-header">
 		<header>
