@@ -149,18 +149,20 @@ textarea {
 
 </head>
 
+
 <c:if test="${empty loginId }">
 	<script>
 		alert("글작성은 로그인 후 사용가능합니다.");
 		location.href="${pageContext.request.contextPath}/login";
 	</script>
 </c:if>
-<%-- <c:if test="${not empty loginId }">
+<c:if test="${loginId.memberType==0}">
 	<script>
-		alert("글작성은 로그인 후 사용가능합니다.");
-		location.href="${pageContext.request.contextPath}/login";
+		alert("글작성은 교직원만 가능합니다.");
+		location.href="${pageContext.request.contextPath}/notice";
 	</script>
-</c:if> --%>
+</c:if>
+
 <body>
 	<div class="wrap-header">
 		<header>
@@ -169,9 +171,20 @@ textarea {
 				<p class="b_title">자바개발학과</p>
 			</div>
 			<div class="top-menu">
-				<table>
+					<table>
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/login">login</a></td>
+						<td>
+							<div>
+							<c:choose>
+								<c:when test="${not empty loginId }">
+									<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/login">로그인</a>
+								</c:otherwise>
+							</c:choose>
+							</div>
+						</td>
 					</tr>
 				</table>
 			</div>

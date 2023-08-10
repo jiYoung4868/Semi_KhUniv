@@ -110,4 +110,27 @@ public class NoticeDao {
 		System.out.println("[jy] NoticeDao.selectOne,result: " + result);
 		return result;
 	}
+	
+	public int getTotalCount(Connection conn) {
+		System.out.println("[jy]NoticeDao.getTotalCount");
+		int result = 0;
+		String query = "SELECT COUNT(*) CNT FROM NOTICE";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnectionKh();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+	}
 }
+

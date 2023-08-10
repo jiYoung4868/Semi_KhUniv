@@ -1,7 +1,9 @@
 package kh.semi.khuniv.notice.model.service;
 
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kh.semi.khuniv.notice.model.dao.NoticeDao;
 import kh.semi.khuniv.notice.model.dto.NoticeVo;
@@ -44,5 +46,25 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+
+////공지사항 페이징 처리
+//	public Map<String, Object> noticeList(int currentPage, int pageSize){
+//		Connection conn = getConnectionKh();
+//		int totalCnt= dao.getTotalCount(conn);
+//		List<NoticeVo> result = dao.noticeList(conn, currentPage, pageSize, totalCnt);
+//		close(conn);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("totalCnt", totalCnt);
+//		map.put("StudentList", result);
+//		return map;
+//		
+//	}
+//	public int getTotalCount() {
+//		Connection conn = getConnectionKh();
+//		int result = dao.getTotalCount(conn);
+//		close(conn);
+//		return result;
+//		
+//	}
 	
 }

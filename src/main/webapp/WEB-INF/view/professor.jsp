@@ -132,9 +132,20 @@ header>.main-menu {
 				<p class="b_title">자바개발학과</p>
 			</div>
 			<div class="top-menu">
-				<table>
+					<table>
 					<tr>
-						<td>login</td>
+						<td>
+							<div>
+							<c:choose>
+								<c:when test="${not empty loginId }">
+									<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/login">로그인</a>
+								</c:otherwise>
+							</c:choose>
+							</div>
+						</td>
 					</tr>
 				</table>
 			</div>

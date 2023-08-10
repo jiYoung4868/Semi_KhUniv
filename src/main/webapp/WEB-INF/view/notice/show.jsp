@@ -171,7 +171,18 @@ textarea {
 			<div class="top-menu">
 				<table>
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/login">login</a></td>
+						<td>
+							<div>
+							<c:choose>
+								<c:when test="${not empty loginId }">
+									<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/login">로그인</a>
+								</c:otherwise>
+							</c:choose>
+							</div>
+						</td>
 					</tr>
 				</table>
 			</div>

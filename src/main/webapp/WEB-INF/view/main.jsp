@@ -155,10 +155,6 @@ header>.main-menu {
 							</div>
 						</td>
 					</tr>
-
-
-
-
 				</table>
 			</div>
 			<div class="main-menu">
