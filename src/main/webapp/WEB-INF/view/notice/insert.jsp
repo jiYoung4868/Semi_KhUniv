@@ -150,20 +150,22 @@ textarea {
 </head>
 
 
+
+
+<body>
 <c:if test="${empty loginId }">
 	<script>
 		alert("글작성은 로그인 후 사용가능합니다.");
-		location.href="${pageContext.request.contextPath}/login";
+	/* 	location.href="${pageContext.request.contextPath}/login"; */
 	</script>
 </c:if>
-<c:if test="${loginId.memberType==0}">
+<c:if test="${loginId.memberType==1}">
 	<script>
 		alert("글작성은 교직원만 가능합니다.");
 		location.href="${pageContext.request.contextPath}/notice";
 	</script>
 </c:if>
 
-<body>
 	<div class="wrap-header">
 		<header>
 			<div>

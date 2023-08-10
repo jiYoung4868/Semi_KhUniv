@@ -244,7 +244,19 @@ header>.main-menu {
 		</table>
 
 	</div>
+	<div>
+	<c:if test="${startPageNum > 1 }">
+	<a href="<%=request.getContextPath()%>/notice?pageNo=${startPageNum-1}"><span>이전</span></a>
+	</c:if>
+	<c:forEach begin="${startPageNum}" end="${endPageNum}" var="i">
+	<a href="<%=request.getContextPath()%>/notice?pageNo=${i }"><span>${i }</span></a>
+	</c:forEach>
+	<c:if test="${endPageNum < totalPageNum}">
+		<a href="<%=request.getContextPath()%>/notice?pageNo=${endPageNum+1}"><span>다음</span></a>
+	</c:if>
 	</div>
+	
+	
 	<div class="lower-content">
 		<table class="menu-button">
 			<tr>

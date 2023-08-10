@@ -15,13 +15,13 @@ public class NoticeService {
 	private NoticeDao dao = new NoticeDao();
 	
 // 공지사항 게시판 리스트
-	public List<NoticeVo> noticeList(){
-		List<NoticeVo> result=null;
-		Connection conn = getConnectionKh();
-		result = dao.noticeList(conn);
-		close(conn);
-		return result;
-	}
+//	public List<NoticeVo> noticeList(){
+//		List<NoticeVo> result=null;
+//		Connection conn = getConnectionKh();
+//		result = dao.noticeList(conn);
+//		close(conn);
+//		return result;
+//	}
 // 공지사항 게시글 추가
 	public int insert(NoticeVo vo) {
 		int result = 0;
@@ -47,24 +47,24 @@ public class NoticeService {
 		return result;
 	}
 
-////공지사항 페이징 처리
-//	public Map<String, Object> noticeList(int currentPage, int pageSize){
-//		Connection conn = getConnectionKh();
-//		int totalCnt= dao.getTotalCount(conn);
-//		List<NoticeVo> result = dao.noticeList(conn, currentPage, pageSize, totalCnt);
-//		close(conn);
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("totalCnt", totalCnt);
-//		map.put("StudentList", result);
-//		return map;
-//		
-//	}
-//	public int getTotalCount() {
-//		Connection conn = getConnectionKh();
-//		int result = dao.getTotalCount(conn);
-//		close(conn);
-//		return result;
-//		
-//	}
+//공지사항 페이징 처리
+	public Map<String, Object> noticeList(int currentPage, int pageSize){
+		Connection conn = getConnectionKh();
+		int totalCnt= dao.getTotalCount(conn);
+		List<NoticeVo> result = dao.noticeList(conn, currentPage, pageSize, totalCnt);
+		close(conn);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("totalCnt", totalCnt);
+		map.put("NoticeList", result);
+		return map;
+		
+	}
+	public int getTotalCount() {
+		Connection conn = getConnectionKh();
+		int result = dao.getTotalCount(conn);
+		close(conn);
+		return result;
+		
+	}
 	
 }
