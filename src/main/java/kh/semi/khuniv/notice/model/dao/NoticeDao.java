@@ -12,35 +12,7 @@ import kh.semi.khuniv.notice.model.dto.NoticeVoRes;
 
 public class NoticeDao {
 
-//	// 공지사항 게시판 리스트
-//	public List<NoticeVo> noticeList(Connection conn) {
-//		System.out.println("[jy] NoticeDao.noticeList");
-//		List<NoticeVo> result = new ArrayList<NoticeVo>();
-//
-//		String query = "SELECT NOTICE_NO, NOTICE_TITLE, NWRITTEN_TIME, WRITER FROM NOTICELIST";
-//
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//
-//		try {
-//			pstmt = conn.prepareStatement(query);
-//			rs = pstmt.executeQuery();
-//			System.out.println("[jy] noticeList.rs:" + rs);
-//			while (rs.next() == true) {
-//				NoticeVo nvo = new NoticeVo(rs.getString("NOTICE_NO"), rs.getString("NOTICE_TITLE"),
-//						rs.getString("NWRITTEN_TIME"), rs.getString("WRITER"));
-//				result.add(nvo);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//
-//		} finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//		System.out.println("[jy] noticeList.return: " + result);
-//		return result;
-//	}
+
 
 	// 공지사항 게시글 추가
 	public int insert(Connection conn, NoticeVo vo) {
@@ -111,13 +83,14 @@ public class NoticeDao {
 		return result;
 	}
 	
-	//공지사항 페이징 처리	
+	//공지사항 리스트 + 페이징 처리	
 	public int getTotalCount(Connection conn) {
 		System.out.println("[jy] NoticeDao.getTotalCount");
 		int result = 0;
 		String query = "SELECT COUNT(*) CNT FROM NOTICE";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		try {
 			conn = getConnectionKh();
 			pstmt = conn.prepareStatement(query);
@@ -137,12 +110,12 @@ public class NoticeDao {
 	}
 	public List<NoticeVo> noticeList(Connection conn, int currentPage, int pageSize, int totalCnt){
 		List<NoticeVo> result = new ArrayList<NoticeVo>();
-		String query = "SELECT * \r\n"
-				+ "FROM \r\n"
-				+ "    (SELECT TB1.*, ROWNUM NRN \r\n"
-				+ "    FROM\r\n"
-				+ "        (SELECT NOTICE_NO, NOTICE_TITLE, NWRITTEN_TIME, WRITER\r\n"
-				+ "        FROM NOTICE\r\n"
+		String query = "SELECT * "
+				+ "FROM "
+				+ "    (SELECT TB1.*, ROWNUM NRN "
+				+ "    FROM"
+				+ "        (SELECT NOTICE_NO, NOTICE_TITLE, NWRITTEN_TIME, WRITER"
+				+ "        FROM NOTICELIST"
 				+ "        ORDER BY NOTICE_NO ASC) TB1) TB2 WHERE NRN BETWEEN ? AND ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -151,7 +124,8 @@ public class NoticeDao {
 		int endRownum = 0;
 		startRownum = (currentPage-1)*pageSize+1;
 		endRownum = ((currentPage*pageSize) > totalCnt) ? totalCnt: (currentPage*pageSize);
-		System.out.println("[jy] NoticeDao.noticeList.totalCnt/startRownum/endRownum: " + totalCnt + "/" + startRownum +"/" + endRownum + "/");
+		
+		System.out.println("[jy] NoticeDao.noticeList.totalCnt/startRownum/endRownum: " + totalCnt + "/" + startRownum +"/" + endRownum);
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, startRownum);
@@ -160,10 +134,10 @@ public class NoticeDao {
 		
 		while(rs.next() == true) {
 			NoticeVo vo = new NoticeVo();
-			vo.setNoticeNo(rs.getString("Notice_No"));
-			vo.setNoticeNo(rs.getString("Notice_TITLE"));
-			vo.setNoticeNo(rs.getString("NWRITTEN_TIME"));
-			vo.setNoticeNo(rs.getString("WRITER"));
+			vo.setNoticeNo(rs.getString("NOTICE_NO"));
+			vo.setNoticeTitle(rs.getString("NOTICE_TITLE"));
+			vo.setnWRittenTime(rs.getString("NWRITTEN_TIME"));
+			vo.setWriter(rs.getString("WRITER"));
 		
 			result.add(vo);
 		}
@@ -178,4 +152,42 @@ public class NoticeDao {
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+//// 공지사항 게시판 리스트
+//public List<NoticeVo> noticeList(Connection conn) {
+//	System.out.println("[jy] NoticeDao.noticeList");
+//	List<NoticeVo> result = new ArrayList<NoticeVo>();
+//
+//	String query = "SELECT NOTICE_NO, NOTICE_TITLE, NWRITTEN_TIME, WRITER FROM NOTICELIST";
+//
+//	PreparedStatement pstmt = null;
+//	ResultSet rs = null;
+//
+//	try {
+//		pstmt = conn.prepareStatement(query);
+//		rs = pstmt.executeQuery();
+//		System.out.println("[jy] noticeList.rs:" + rs);
+//		while (rs.next() == true) {
+//			NoticeVo nvo = new NoticeVo(rs.getString("NOTICE_NO"), rs.getString("NOTICE_TITLE"),
+//					rs.getString("NWRITTEN_TIME"), rs.getString("WRITER"));
+//			result.add(nvo);
+//		}
+//	} catch (Exception e) {
+//		e.printStackTrace();
+//
+//	} finally {
+//		close(rs);
+//		close(pstmt);
+//	}
+//	System.out.println("[jy] noticeList.return: " + result);
+//	return result;
+//}
 

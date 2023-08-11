@@ -153,18 +153,18 @@ textarea {
 
 
 <body>
-<c:if test="${empty loginId }">
-	<script>
-		alert("글작성은 로그인 후 사용가능합니다.");
-	/* 	location.href="${pageContext.request.contextPath}/login"; */
-	</script>
-</c:if>
-<c:if test="${loginId.memberType==1}">
-	<script>
-		alert("글작성은 교직원만 가능합니다.");
-		location.href="${pageContext.request.contextPath}/notice";
-	</script>
-</c:if>
+	<c:if test="${empty loginId }">
+		<script>
+			alert("글작성은 로그인 후 사용가능합니다.");
+			location.href = "${pageContext.request.contextPath}/login";
+		</script>
+	</c:if>
+	<c:if test="${loginId.memberType==1}">
+		<script>
+			alert("글작성은 교직원만 가능합니다.");
+			location.href = "${pageContext.request.contextPath}/notice";
+		</script>
+	</c:if>
 
 	<div class="wrap-header">
 		<header>
@@ -173,18 +173,18 @@ textarea {
 				<p class="b_title">자바개발학과</p>
 			</div>
 			<div class="top-menu">
-					<table>
+				<table>
 					<tr>
 						<td>
 							<div>
-							<c:choose>
-								<c:when test="${not empty loginId }">
-									<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
-								</c:when>
-								<c:otherwise>
-									<a href="${pageContext.request.contextPath}/login">로그인</a>
-								</c:otherwise>
-							</c:choose>
+								<c:choose>
+									<c:when test="${not empty loginId }">
+										<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${pageContext.request.contextPath}/login">로그인</a>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</td>
 					</tr>
@@ -215,7 +215,8 @@ textarea {
 	</div>
 
 	<table class="noticeFill">
-		<form action="<%=request.getContextPath()%>/newnotice.do" method="post">
+		<form action="<%=request.getContextPath()%>/newnotice.do"
+			method="post">
 			<tr>
 				<td><strong>제목</strong></td>
 				<td class="ntitle"><input type="text" size="30" name="nTitle"
@@ -233,15 +234,15 @@ textarea {
                 <td><strong>첨부파일</strong></td>
                 <td class="file"><input type="file" name="uploadfile"></td>
             </tr> -->
-		<tr>
-			<td><br></td>
-		</tr>
-		<tr>
+			<tr>
+				<td><br></td>
+			</tr>
+			<tr>
 
-			<td colspan="2" class="nsubmit"><button type="submit">글
-					등록</button></td>
+				<td colspan="2" class="nsubmit"><button type="submit">글
+						등록</button></td>
 
-		</tr>
+			</tr>
 		</form>
 	</table>
 

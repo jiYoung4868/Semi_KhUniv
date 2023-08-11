@@ -165,6 +165,11 @@ header>.main-menu {
 	padding: 10px;
 	margin: 5px;
 }
+.numbering {
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+}
 </style>
 </head>
 
@@ -244,18 +249,19 @@ header>.main-menu {
 		</table>
 
 	</div>
-	<div>
-	<c:if test="${startPageNum > 1 }">
+	
+	<div class="numbering">
+	<c:if test="${startPageNum gt 1 }">
 	<a href="<%=request.getContextPath()%>/notice?pageNo=${startPageNum-1}"><span>이전</span></a>
 	</c:if>
 	<c:forEach begin="${startPageNum}" end="${endPageNum}" var="i">
 	<a href="<%=request.getContextPath()%>/notice?pageNo=${i }"><span>${i }</span></a>
 	</c:forEach>
-	<c:if test="${endPageNum < totalPageNum}">
+	<c:if test="${endPageNum lt totalPageNum}">
 		<a href="<%=request.getContextPath()%>/notice?pageNo=${endPageNum+1}"><span>다음</span></a>
 	</c:if>
 	</div>
-	
+
 	
 	<div class="lower-content">
 		<table class="menu-button">

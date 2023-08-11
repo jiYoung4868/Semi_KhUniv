@@ -55,9 +55,8 @@ public class NoticeService {
 		close(conn);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("totalCnt", totalCnt);
-		map.put("NoticeList", result);
+		map.put("noticeList", result);
 		return map;
-		
 	}
 	public int getTotalCount() {
 		Connection conn = getConnectionKh();
