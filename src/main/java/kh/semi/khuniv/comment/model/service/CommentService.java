@@ -10,9 +10,9 @@ import static kh.semi.khuniv.common.jdbc.JdbcTemplate.*;
 
 public class CommentService {
 	private CommentDao dao = new CommentDao();
-	
-// 댓글 리스트
-	public List<CommentVo> commentList(String noticeNo){
+
+	// 공지사항 댓글 리스트
+	public List<CommentVo> commentList(String noticeNo) {
 		List<CommentVo> result = null;
 		Connection conn = getConnectionKh();
 		result = dao.commentList(conn, noticeNo);

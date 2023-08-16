@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kh.semi.khuniv.comment.model.dto.CommentVo;
+import kh.semi.khuniv.comment.model.service.CommentService;
 import kh.semi.khuniv.login.model.dto.LoginVo;
 
 /**
@@ -16,6 +17,7 @@ import kh.semi.khuniv.login.model.dto.LoginVo;
 @WebServlet("/newcomment.do")
 public class NewCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private CommentService service = new CommentService();
 //
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 //			throws ServletException, IOException {
@@ -27,13 +29,13 @@ public class NewCommentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//insert 
 		System.out.println("[jy] CommentInsert.dopost");
-		String commentContent = request.getParameter("commentContent");
+		String commentContent = request.getParameter("comment");
 		LoginVo vo = (LoginVo)request.getSession().getAttribute("loginId");
-		int result = service.insert(new CommentVo(noticeNo, vo.getMemberId(), commentContent, cWrittenTime));
+		int result = service.insert(new CommentVo(vo.getMemberId(), commentContent));
 	
 		response.sendRedirect(request.getContextPath()+ "/selectnotice?noticeNo=" + noticeNo);
+		// redirect 에서 noticeNO 번호를 받아오고 싶은데 어디서 받아와야할지 모르겠음
 	}
 
 }

@@ -271,20 +271,21 @@ textarea {
 				<td>작성 시간</td>
 				<td></td>
 			</tr>
-			<tr>
-				<td>TODO:작성자</td>
-				<td>TODO:내용</td>
-				<td>TODO:작성 시간</td>
-				<td><button type="submit" id="btnCDel">삭제</button></td>
-			</tr>
+			<c:if test="${not empty cvo}">
+				<tr>
+					<td>${cvo.commenter}</td>
+					<td>${cvo.commentContent}</td>
+					<td>${cvo.cWrittenTime}</td>
+					<td><button type="submit" id="btnCDel">삭제</button></td>
+				</tr>
+			</c:if>
 			<tr class="newComment">
 				<td colspan="3"><input type="text" size="71" name="comment"
 					placeholder="댓글을 입력하시오." value="" required></td>
-				<td>
-					<input type="hidden" name="noticeNo" value="${nvo.noticeNo}"><button type="submit" id="btnComment">등록</button>
-				</td>
+				<td><input type="hidden" name="noticeNo"
+					value="${nvo.noticeNo}">
+					<button type="submit" id="btnComment">등록</button></td>
 			</tr>
-
 		</table>
 	</div>
 

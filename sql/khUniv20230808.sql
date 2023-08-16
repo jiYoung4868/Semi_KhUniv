@@ -23,4 +23,21 @@
 --FROM NOTICELIST
 --WHERE NOTICE_NO = 1;
 
-SELECT COUNT(*) CNT FROM NOTICE;
+--SELECT COUNT(*) CNT FROM NOTICE;
+
+DESC COMMENT;
+
+INSERT INTO "COMMENT" VALUES (1, SYSDATE, 2, 'P082', '안녕하세요');
+
+--*****오류발생
+--명령의 30 행에서 시작하는 중 오류 발생 -
+--INSERT INTO COMMENT VALUES (1, SYSDATE, 2, 'P082', '안녕하세요')
+--오류 발생 명령행: 30 열: 13
+--오류 보고 -
+--SQL 오류: ORA-00903: 테이블명이 부적합합니다
+--00903. 00000 -  "invalid table name"
+--*Cause:    
+--*Action:
+--
+--1 행 이(가) 삽입되었습니다.
+--COMMENT가 오라클 내에서 사용하는 명령어이기 때문에 "" 넣어줘야함.

@@ -79,7 +79,7 @@ public class NoticeDao {
 			close(pstmt);
 
 		}
-		System.out.println("[jy] NoticeDao.selectOne,result: " + result);
+		System.out.println("[jy] NoticeDao.selectOne.result: " + result);
 		return result;
 	}
 	

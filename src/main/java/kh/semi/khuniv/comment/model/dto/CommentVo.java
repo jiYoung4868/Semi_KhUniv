@@ -6,22 +6,28 @@ public class CommentVo {
 //			NOTICE_NO       NOT NULL NUMBER         
 //			COMMENTER       NOT NULL VARCHAR2(300)  
 //			COMMENT_CONTENT NOT NULL VARCHAR2(1000) 
-	
+
 	private String commentNo;
 	private String cWrittenTime;
-	private String noticeNo; //tb notice
+	private String noticeNo; // tb notice
 	private String commenter;
 	private String commentContent;
-	
+
 	public CommentVo() {
 		super();
 	}
-	
-	//공지사항 댓글 리스트
-	public CommentVo(String cWrittenTime, String noticeNo, String commenter, String commentContent) {
+
+	// 공지사항 댓글 작성
+	public CommentVo(String commenter, String commentContent) {
+		super();
+		this.commenter = commenter;
+		this.commentContent = commentContent;
+	}
+
+	// 공지사항 댓글 리스트
+	public CommentVo(String cWrittenTime, String commenter, String commentContent) {
 		super();
 		this.cWrittenTime = cWrittenTime;
-		this.noticeNo = noticeNo;
 		this.commenter = commenter;
 		this.commentContent = commentContent;
 	}

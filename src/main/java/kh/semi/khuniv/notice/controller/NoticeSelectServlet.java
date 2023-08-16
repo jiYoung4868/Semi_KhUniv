@@ -24,17 +24,36 @@ public class NoticeSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String noticeNo = request.getParameter("noticeNo");
-		System.out.println("[jy] NoticeSelectServlet.doGet.noticeNo: "+ noticeNo);
+		System.out.println("[jy] NoticeSelectServlet.doGet.noticeNo: " + noticeNo);
+		
 		NoticeService service = new NoticeService();
 		NoticeVoRes vo = service.selectOne(noticeNo);
+		CommentService cservice = new CommentService();
+		List<CommentVo> cvo = cservice.commentList(noticeNo);
 		
-		List<CommentVo> commentList = CommentService.commentList(noticeNo);
-		if(vo != null) {
+		if (vo != null) {
 			request.setAttribute("nvo", vo);
-			request.setAttribute("commentList", commentList);
+			request.setAttribute("cvo", cvo);
 			request.getRequestDispatcher("/WEB-INF/view/notice/show.jsp").forward(request, response);
 		}
 
 	}
+
 }
+
+//protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//		throws ServletException, IOException {
+
+//	String noticeNo = request.getParameter("noticeNo");
+//	System.out.println("[jy] NoticeSelectServlet.doGet.noticeNo: "+ noticeNo);
+//	NoticeService service = new NoticeService();
+//	NoticeVoRes vo = service.selectOne(noticeNo);
+//	
+//	List<CommentVo> commentList = new CommentService().commentList(noticeNo);
+//	if(vo != null) {
+//		request.setAttribute("cvo", vo);
+//		request.setAttribute("commentList", commentList);
+//		request.getRequestDispatcher("/WEB-INF/view/notice/show.jsp").forward(request, response);
+//	}
