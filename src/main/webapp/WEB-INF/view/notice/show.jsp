@@ -271,21 +271,33 @@ textarea {
 				<td>작성 시간</td>
 				<td></td>
 			</tr>
-			<c:if test="${not empty cvo}">
+ 			<c:if test="${not empty cvo}">
+ 			<c:forEach items = "${cvo}" var="cvo">
 				<tr>
 					<td>${cvo.commenter}</td>
 					<td>${cvo.commentContent}</td>
 					<td>${cvo.cWrittenTime}</td>
 					<td><button type="submit" id="btnCDel">삭제</button></td>
 				</tr>
+				</c:forEach>
 			</c:if>
+
 			<tr class="newComment">
+				<form action="<%=request.getContextPath()%>/newcomment.do"
+					method="post">
+<%-- 					<c:if test="${empty loginId }">
+						<script>
+							alert("댓글작성은 로그인 후 사용가능합니다.");
+							location.href = "${pageContext.request.contextPath}/login";
+						</script>
+					</c:if> --%>
 				<td colspan="3"><input type="text" size="71" name="comment"
-					placeholder="댓글을 입력하시오." value="" required></td>
+					placeholder="댓글을 입력하시오." required></td>
 				<td><input type="hidden" name="noticeNo"
 					value="${nvo.noticeNo}">
 					<button type="submit" id="btnComment">등록</button></td>
 			</tr>
+			</form>
 		</table>
 	</div>
 

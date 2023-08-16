@@ -9,14 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kh.semi.khuniv.comment.model.dto.CommentVo;
+import kh.semi.khuniv.comment.model.dto.CommentVoRes;
 
 public class CommentDao {
 	
+	// 공지사항 댓글 리스트
 	public List<CommentVo> commentList(Connection conn, String noticeNo) {
 	System.out.println("[jy] CommentDao.commentList.noticeNo: " + noticeNo);
 	List<CommentVo> result = new ArrayList<CommentVo>();
 
-	String query = "SELECT COMMENTER, COMMENT_CONTENT, CWRITTEN_TIME FROM \"COMMENT\" WHERE NOTICE_NO= ?";
+	String query = "SELECT MEMBER_NAME, COMMENT_CONTENT, CWRITTEN_TIME FROM CMEMBER WHERE NOTICE_NO= ?";
 
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -27,7 +29,7 @@ public class CommentDao {
 		rs = pstmt.executeQuery();
 		while (rs.next() == true) {
 			System.out.println("[jy] commentList.rs:" + rs);
-			CommentVo cvo = new CommentVo(rs.getString("COMMENTER"), rs.getString("COMMENT_CONTENT"),
+			CommentVo cvo = new CommentVo(rs.getString("MEMBER_NAME"), rs.getString("COMMENT_CONTENT"),
 					rs.getString("CWRITTEN_TIME"));
 			result.add(cvo);
 		}
@@ -41,4 +43,25 @@ public class CommentDao {
 	System.out.println("[jy] commentList.return: " + result);
 	return result;
 }
+	
+	// 공지사항 댓글 추가
+	public int insert(Connection conn, CommentVoRes vo) {
+		System.out.println("[jy] CommentDao.insert.vo: " + vo);
+		int result = 0;
+		String query = "INSERT INTO \"COMMENT\" VALUES (COMMENT_SEQ.NEXTVAL, default , ? , ?, ? )";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, vo.getNoticeNo());
+			pstmt.setString(2, vo.getCommenter());
+			pstmt.setString(3, vo.getCommentContent());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("[jy] CommentDao.insert.result: " + result);
+		return result;
+	}
 }

@@ -13,38 +13,19 @@ public class CommentVo {
 	private String commenter;
 	private String commentContent;
 
-	public CommentVo() {
-		super();
-	}
-
-	// 공지사항 댓글 작성
-	public CommentVo(String commenter, String commentContent) {
-		super();
-		this.commenter = commenter;
-		this.commentContent = commentContent;
-	}
 
 	// 공지사항 댓글 리스트
-	public CommentVo(String cWrittenTime, String commenter, String commentContent) {
+	public CommentVo(String commenter, String commentContent, String cWrittenTime) {
 		super();
-		this.cWrittenTime = cWrittenTime;
 		this.commenter = commenter;
 		this.commentContent = commentContent;
-	}
-
-	public CommentVo(String commentNo, String cWrittenTime, String noticeNo, String commenter, String commentContent) {
-		super();
-		this.commentNo = commentNo;
 		this.cWrittenTime = cWrittenTime;
-		this.noticeNo = noticeNo;
-		this.commenter = commenter;
-		this.commentContent = commentContent;
 	}
 
 	@Override
 	public String toString() {
-		return "CommentVo [commentNo=" + commentNo + ", cWrittenTime=" + cWrittenTime + ", noticeNo=" + noticeNo
-				+ ", commenter=" + commenter + ", commentContent=" + commentContent + "]";
+		return "CommentVo [commentNo=" + commentNo + ", commenter=" + commenter + ", noticeNo=" + noticeNo + ", commentContent="
+				+ commentContent + ", cWrittenTime=" +cWrittenTime + "]";
 	}
 
 	public String getCommentNo() {

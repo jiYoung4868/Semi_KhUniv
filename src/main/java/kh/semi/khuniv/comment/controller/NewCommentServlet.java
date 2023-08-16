@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kh.semi.khuniv.comment.model.dto.CommentVo;
+import kh.semi.khuniv.comment.model.dto.CommentVoRes;
 import kh.semi.khuniv.comment.model.service.CommentService;
 import kh.semi.khuniv.login.model.dto.LoginVo;
 
@@ -31,8 +32,10 @@ public class NewCommentServlet extends HttpServlet {
 		
 		System.out.println("[jy] CommentInsert.dopost");
 		String commentContent = request.getParameter("comment");
+		String noticeNo = request.getParameter("noticeNo");
 		LoginVo vo = (LoginVo)request.getSession().getAttribute("loginId");
-		int result = service.insert(new CommentVo(vo.getMemberId(), commentContent));
+		String commenter = vo.getMemberId();
+		int result = service.insert(new CommentVoRes(commenter, commentContent, noticeNo));
 	
 		response.sendRedirect(request.getContextPath()+ "/selectnotice?noticeNo=" + noticeNo);
 		// redirect 에서 noticeNO 번호를 받아오고 싶은데 어디서 받아와야할지 모르겠음
