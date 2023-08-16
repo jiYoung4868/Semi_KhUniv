@@ -29,4 +29,13 @@ public class CommentService {
 		close(conn);
 		return result;
 	}
+	
+	// 공지사항 댓글 삭제
+	public int delete(String commentNo) {
+		int result = 0;
+		Connection conn = getConnectionKh();
+		result = dao.delete(conn, commentNo);
+		close(conn);
+		return result;
+	}
 }

@@ -44,10 +44,19 @@ public class LoginDoServlet extends HttpServlet {
 			System.out.println("[jy] 로그인 성공");
 			request.getSession().setAttribute("msg", result.getMemberName()+"님 반갑습니다.");
 			request.getSession().setAttribute("loginId", result);
+			response.sendRedirect(sendUrl + "/lmain");
 		} else {
 			System.out.println("[jy] 로그인 실패");
+			request.getSession().setAttribute("msg", "로그인 실패하였습니다.\n 아이디와 패스워드를 확인해주세요.");
+			response.sendRedirect(sendUrl + "/lmain");
 		}
-		response.sendRedirect(sendUrl + "/lmain");
+
+		
+	}
+
+
+	private void alert(String string) {
+		// TODO Auto-generated method stub
 		
 	}
 

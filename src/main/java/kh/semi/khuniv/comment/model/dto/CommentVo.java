@@ -15,8 +15,10 @@ public class CommentVo {
 
 
 	// 공지사항 댓글 리스트
-	public CommentVo(String commenter, String commentContent, String cWrittenTime) {
+	public CommentVo(String noticeNo, String commentNo, String commenter, String commentContent, String cWrittenTime) {
 		super();
+		this.noticeNo = noticeNo;
+		this.commentNo = commentNo;
 		this.commenter = commenter;
 		this.commentContent = commentContent;
 		this.cWrittenTime = cWrittenTime;

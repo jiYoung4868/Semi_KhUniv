@@ -77,12 +77,12 @@ header {
 
 		</div>
 		<div>
-			<input type="submit" value="로그인">
+			<input type="submit" value="로그인"> <p style="color: red;">로그인 실패</P>
 			</form>
 		</div>
 		<div>
-			<p>아이디찾기</p>
-			<p>비밀번호찾기</p>
+	<p>아이디/비밀번호를 분실하셨다면</p>
+	<p>신분증/학생증/교직원증을 들고 행정팀을 방문해주세요</p>
 		</div>
 	</div>
 	<footer>

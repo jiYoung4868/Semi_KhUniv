@@ -18,7 +18,7 @@ public class CommentDao {
 	System.out.println("[jy] CommentDao.commentList.noticeNo: " + noticeNo);
 	List<CommentVo> result = new ArrayList<CommentVo>();
 
-	String query = "SELECT MEMBER_NAME, COMMENT_CONTENT, CWRITTEN_TIME FROM CMEMBER WHERE NOTICE_NO= ?";
+	String query = "SELECT NOTICE_NO, COMMENT_NO, MEMBER_NAME, COMMENT_CONTENT, CWRITTEN_TIME FROM CMEMBER WHERE NOTICE_NO= ?";
 
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -29,7 +29,7 @@ public class CommentDao {
 		rs = pstmt.executeQuery();
 		while (rs.next() == true) {
 			System.out.println("[jy] commentList.rs:" + rs);
-			CommentVo cvo = new CommentVo(rs.getString("MEMBER_NAME"), rs.getString("COMMENT_CONTENT"),
+			CommentVo cvo = new CommentVo(rs.getString("NOTICE_NO"), rs.getString("COMMENT_NO"), rs.getString("MEMBER_NAME"), rs.getString("COMMENT_CONTENT"),
 					rs.getString("CWRITTEN_TIME"));
 			result.add(cvo);
 		}
@@ -62,6 +62,25 @@ public class CommentDao {
 			close(pstmt);
 		}
 		System.out.println("[jy] CommentDao.insert.result: " + result);
+		return result;
+	}
+	
+	// 공지사항 댓글 삭제
+	public int delete(Connection conn, String commentNo) {
+		System.out.println("[jy] CommentDao.delete.commentNo");
+		int result = 0;
+		String query = "DELETE FROM \"COMMENT\" WHERE COMMENT_NO = ?";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, commentNo);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("[jy] CommentDao.delete.result" + result);
 		return result;
 	}
 }
