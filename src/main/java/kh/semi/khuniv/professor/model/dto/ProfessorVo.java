@@ -1,4 +1,4 @@
-package kh.semi.khuniv.common.model.dto;
+package kh.semi.khuniv.professor.model.dto;
 
 public class ProfessorVo {
 //	PROFESSOR_NO    NOT NULL VARCHAR2(20) 

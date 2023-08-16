@@ -1,4 +1,4 @@
-package kh.semi.khuniv.common.model.dto;
+package kh.semi.khuniv.professor.model.dto;
 
 public class ProfessorLevelVo {
 //	PROFESSOR_LEVEL NOT NULL VARCHAR2(20) 

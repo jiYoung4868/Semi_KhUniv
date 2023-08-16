@@ -143,7 +143,7 @@ header>.main-menu {
 	text-align: center;
 }
 
-.Contentcontent {
+.contentContent {
 	width: 400px;
 	height: 200px;
 	border: 1px solid black;
@@ -151,6 +151,37 @@ header>.main-menu {
 }
 
 .nsubmit {
+	text-align: center;
+}
+
+.commentBox {
+	width: 1600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin: 10px;
+}
+
+.comment {
+	width: 600px;
+	border: 1px black solid;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.comment td {
+	width: 450px;
+	border: 1px black solid;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.newComment {
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 }
 
@@ -173,14 +204,14 @@ textarea {
 					<tr>
 						<td>
 							<div>
-							<c:choose>
-								<c:when test="${not empty loginId }">
-									<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
-								</c:when>
-								<c:otherwise>
-									<a href="${pageContext.request.contextPath}/login">로그인</a>
-								</c:otherwise>
-							</c:choose>
+								<c:choose>
+									<c:when test="${not empty loginId }">
+										<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${pageContext.request.contextPath}/login">로그인</a>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</td>
 					</tr>
@@ -227,11 +258,35 @@ textarea {
 			</tr>
 			<tr>
 				<td><strong>내용</strong></td>
-				<td class="Contentcontent">${nvo.noticeContent}</td>
+				<td class="contentContent">${nvo.noticeContent}</td>
 			</tr>
 		</c:if>
 		</form>
 	</table>
+	<div class="commentBox">
+		<table class="comment">
+			<tr>
+				<td>작성자</td>
+				<td>내용</td>
+				<td>작성 시간</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>TODO:작성자</td>
+				<td>TODO:내용</td>
+				<td>TODO:작성 시간</td>
+				<td><button type="submit" id="btnCDel">삭제</button></td>
+			</tr>
+			<tr class="newComment">
+				<td colspan="3"><input type="text" size="71" name="comment"
+					placeholder="댓글을 입력하시오." value="" required></td>
+				<td>
+					<input type="hidden" name="noticeNo" value="${nvo.noticeNo}"><button type="submit" id="btnComment">등록</button>
+				</td>
+			</tr>
+
+		</table>
+	</div>
 
 	<div class="lower-content">
 		<table class="menu-button">
@@ -251,7 +306,6 @@ textarea {
 				Right Reserved</p>
 		</footer>
 	</div>
-
 </body>
 
 </html>

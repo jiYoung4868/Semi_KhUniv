@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.semi.khuniv.common.model.dto.ProfessorVo;
 import kh.semi.khuniv.login.model.dto.LoginVo;
 import kh.semi.khuniv.login.model.service.LoginService;
+import kh.semi.khuniv.professor.model.dto.ProfessorVo;
 import kh.semi.khuniv.student.model.dto.StudentVo;
 
 

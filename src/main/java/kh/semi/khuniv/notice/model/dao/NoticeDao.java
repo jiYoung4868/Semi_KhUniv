@@ -136,7 +136,7 @@ public class NoticeDao {
 			NoticeVo vo = new NoticeVo();
 			vo.setNoticeNo(rs.getString("NOTICE_NO"));
 			vo.setNoticeTitle(rs.getString("NOTICE_TITLE"));
-			vo.setnWRittenTime(rs.getString("NWRITTEN_TIME"));
+			vo.setnWrittenTime(rs.getString("NWRITTEN_TIME"));
 			vo.setWriter(rs.getString("WRITER"));
 		
 			result.add(vo);

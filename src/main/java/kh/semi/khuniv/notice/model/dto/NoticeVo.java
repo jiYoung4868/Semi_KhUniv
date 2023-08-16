@@ -10,14 +10,14 @@ public class NoticeVo {
 	private String noticeNo;
 	private String noticeTitle;
 	private String noticeContent;
-	private String nWRittenTime;
+	private String nWrittenTime;
 	private String writer; //tb professor
 
 	
 	@Override
 	public String toString() {
 		return "NoticeVo [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", nWRittenTime=" + nWRittenTime + ", writer=" + writer + "]";
+				+ ", nWrittenTime=" + nWrittenTime + ", writer=" + writer + "]";
 	}
 
 	//공지사항 게시판 리스트
@@ -25,29 +25,29 @@ public class NoticeVo {
 		super();
 	}
 
-	//공지사항 게시글 추가
+
 	public NoticeVo(String noticeTitle, String noticeContent, String writer) {
 		super();
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
 		this.writer = writer;
 	}
-
-	public NoticeVo(String noticeNo, String noticeTitle, String noticeContent, String nWRittenTime, String writer) {
+	//공지사항 게시글 추가
+	public NoticeVo(String noticeNo, String noticeTitle, String noticeContent, String nWrittenTime, String writer) {
 		super();
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
-		this.nWRittenTime = nWRittenTime;
+		this.nWrittenTime = nWrittenTime;
 		this.writer = writer;
 	}
 
 	
-	public NoticeVo(String noticeNo, String noticeTitle, String nWRittenTime, String writer) {
+	public NoticeVo(String noticeNo, String noticeTitle, String nWrittenTime, String writer) {
 		super();
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
-		this.nWRittenTime = nWRittenTime;
+		this.nWrittenTime = nWrittenTime;
 		this.writer = writer;
 	}
 
@@ -99,16 +99,16 @@ public class NoticeVo {
 
 
 
-	public String getnWRittenTime() {
-		return nWRittenTime;
+	public String getnWrittenTime() {
+		return nWrittenTime;
 	}
 
 
 
 
 
-	public void setnWRittenTime(String nWRittenTime) {
-		this.nWRittenTime = nWRittenTime;
+	public void setnWrittenTime(String nWrittenTime) {
+		this.nWrittenTime = nWrittenTime;
 	}
 
 

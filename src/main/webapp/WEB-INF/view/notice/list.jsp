@@ -224,14 +224,14 @@ header>.main-menu {
 
 
 	<div class="notice">
-		`
+		
 		<table class="noticeTable">
 			<thead>
 				<tr>
-					<td>No</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td>작성일</td>
+					<td width="40px;">No</td>
+					<td width="300px;">제목</td>
+					<td width="100px;">작성자</td>
+					<td width="200px;">작성일</td>
 				</tr>
 				<c:if test="${not empty noticeList}">
 					<c:forEach items="${noticeList}" var="nvo">
@@ -240,7 +240,7 @@ header>.main-menu {
 							<td>${nvo.noticeNo}</td>
 							<td><a href="<%=request.getContextPath()%>/selectnotice?noticeNo=${nvo.noticeNo}">${nvo.noticeTitle}</a></td>
 							<td>${nvo.writer}</td>
-							<td>${nvo.nWRittenTime}</td>
+							<td>${nvo.nWrittenTime}</td>
 
 						</tr>
 					</c:forEach>

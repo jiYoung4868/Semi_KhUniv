@@ -2,9 +2,9 @@ package kh.semi.khuniv.login.model.service;
 
 import java.sql.Connection;
 
-import kh.semi.khuniv.common.model.dto.ProfessorVo;
 import kh.semi.khuniv.login.model.dao.LoginDao;
 import kh.semi.khuniv.login.model.dto.LoginVo;
+import kh.semi.khuniv.professor.model.dto.ProfessorVo;
 import kh.semi.khuniv.student.model.dto.StudentVo;
 
 import static kh.semi.khuniv.common.jdbc.JdbcTemplate.*;
