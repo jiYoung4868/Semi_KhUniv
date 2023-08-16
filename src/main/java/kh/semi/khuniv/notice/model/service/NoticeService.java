@@ -34,7 +34,13 @@ public class NoticeService {
 	public int delete(String noticeNo) {
 		int result = 0;
 		Connection conn = getConnectionKh();
-		result = dao.delete(conn, noticeNo);
+		setAutoCommit(conn, false);
+		result = dao.deleteC(conn, noticeNo);
+		result = dao.deleteN(conn, noticeNo);
+		if(result!=1) {
+			rollback(conn);
+		}
+		else commit(conn);
 		close(conn);
 		return result;
 	}

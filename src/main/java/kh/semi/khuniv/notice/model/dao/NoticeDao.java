@@ -34,26 +34,44 @@ public class NoticeDao {
 	}
 
 	// 공지사항 게시글 삭제
-	public int delete(Connection conn, String noticeNo) {
+	public int deleteC(Connection conn, String noticeNo) {
 
-		System.out.println("[jy] NoticeDao.delete.noticeNo");
+		System.out.println("[jy] NoticeDao.deleteC.noticeNo");
+		int result = 0;
+		String query = "DELETE FROM \"COMMENT\" WHERE NOTICE_NO = ?";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, noticeNo);
+			result= pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("[jy] NoticeDao.deleteC.result: " + result);
+		return result;
+
+	}
+	public int deleteN(Connection conn, String noticeNo) {
+
+		System.out.println("[jy] NoticeDao.deleteN.noticeNo");
 		int result = 0;
 		String query = "DELETE FROM NOTICE WHERE NOTICE_NO = ?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, noticeNo);
-			result = pstmt.executeUpdate();
+			result= pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		System.out.println("[jy] NoticeDao.delete.result: " + result);
+		System.out.println("[jy] NoticeDao.deleteN.result: " + result);
 		return result;
 
 	}
-
 	// 공지사항 게시글 선택
 	public NoticeVoRes selectOne(Connection conn, String noticeNo) {
 		System.out.println("[jy] NoticeDao.selectOne.noticeNo: " + noticeNo);
