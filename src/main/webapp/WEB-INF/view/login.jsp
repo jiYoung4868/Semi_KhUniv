@@ -51,12 +51,7 @@ header {
 </head>
 
 <body>
-	<script>
-		var msg = '${Msg}';
-		if (msg) {
-			alert(msg);
-		}
-	</script>
+	<jsp:include page="/WEB-INF/view/msg.jsp"></jsp:include>
 	<header> </header>
 	<div class="login-box">
 		<div class="login-welcome">
@@ -77,7 +72,7 @@ header {
 
 		</div>
 		<div>
-			<input type="submit" value="로그인"> <p style="color: red;">로그인 실패</P>
+			<input type="submit" value="로그인">
 			</form>
 		</div>
 		<div>

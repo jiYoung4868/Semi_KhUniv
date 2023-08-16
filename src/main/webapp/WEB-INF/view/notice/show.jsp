@@ -236,13 +236,24 @@ textarea {
 			<tr>
 				<td><a href="<%=request.getContextPath()%>/notice">공지사항</a></td>
 				<td>notice content</td>
-				<%-- <c:if test="${loginId.memberId eq NoticeVo.writer}"> --%>
-				<form action="<%=request.getContextPath()%>/delnotice" method="post">
-					<input type="hidden" name="noticeNo" value="${nvo.noticeNo}">
-					<td><button type="submit" id="btnDelete">글 삭제</button></td>
-				</form>
-				<td><button type="button" id="btnUpdate">글 수정</button></td>
-				<%--  				</c:if>  --%>
+				<c:if test="${loginId.memberId eq nvo.writer}">
+
+					<form action="<%=request.getContextPath()%>/delnotice"
+						method="post">
+						<input type="hidden" name="noticeNo" value="${nvo.noticeNo}">
+						<input type="hidden" name="writer" value="${nvo.writer}">
+						<td><button type="submit" id="btnDelete">글 삭제</button></td>
+					</form>
+
+					<form action="<%=request.getContextPath()%>/editnotice"
+						method="post">
+					<td><button type="submit" id="btnUpdate">
+							<input type="hidden" name="noticeNo" value="${nvo.noticeNo}">
+							글 수정
+						</button></td>
+					</form>
+				</c:if>
+
 			</tr>
 		</table>
 	</div>
@@ -278,10 +289,12 @@ textarea {
 							method="post">
 							<input type="hidden" name="commentNo" value="${cvo.commentNo}">
 							<input type="hidden" name="noticeNo" value="${cvo.noticeNo }">
-						<td>${cvo.commenter}</td>
-						<td>${cvo.commentContent}</td>
-						<td>${cvo.cWrittenTime}</td>
-						<td><button type="submit" id="btnCDel">삭제</button></td>
+							<td>${cvo.commenter}</td>
+							<td>${cvo.commentContent}</td>
+							<td>${cvo.cWrittenTime}</td>
+							<c:if test="${loginId.memberName eq cvo.commenter}">
+								<td><button type="submit" id="btnCDel">삭제</button></td>
+							</c:if>
 					</tr>
 					</form>
 				</c:forEach>
@@ -299,10 +312,27 @@ textarea {
 					<td colspan="3"><input type="text" size="71" name="comment"
 						placeholder="댓글을 입력하시오." required></td>
 					<td><input type="hidden" name="noticeNo"
-						value="${nvo.noticeNo}">
-						<button type="submit" id="btnComment">등록</button></td>
+						value="${nvo.noticeNo}"> 
+						<c:if test="${empty loginId }">
+							<button type="button" onclick="commentFail();" id="btnComment">등록</button></td>
+					</c:if>
+					<c:if test="${not empty loginId }">
+						<button type="submit" id="btnComment">등록</button>
+						</td>
+					</c:if>
+
+		
+					</td>
+					<script>
+						function commentFail() {
+								alert("댓글 작성은 로그인 후 사용가능합니다.");
+								location.href = "${pageContext.request.contextPath}/login";
+						}
+					</script>
 			</tr>
+
 			</form>
+
 		</table>
 	</div>
 

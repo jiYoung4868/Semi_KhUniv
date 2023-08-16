@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-<title>KH 대학교</title>
+<title>공지 수정</title>
 
 <link rel="stylesheet" href="/resources/css/reset.css">
+
 
 <style>
 * {
@@ -87,7 +87,7 @@ header>.main-menu {
 
 .main-content {
 	width: 1600px;
-	height: 300px;
+	height: 50px;
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
@@ -128,11 +128,46 @@ header>.main-menu {
 	text-align: center;
 }
 </style>
+<style>
+.noticeFill {
+	width: 1600px;
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+	position: relative;
+}
+
+.nsubmit {
+	text-align: center;
+}
+
+textarea {
+	resize: none;
+}
+</style>
 
 </head>
 
+
+
+
 <body>
-	<jsp:include page="/WEB-INF/view/msg.jsp"></jsp:include>
+
+	<c:if test="${empty loginId }">
+		<script>
+			alert("글수정은 로그인 후 사용가능합니다.");
+			location.href = "${pageContext.request.contextPath}/login";
+		</script>
+	</c:if>
+	<c:if test="${loginId.memberType==1}">
+		<script>
+			alert("글수정은 교직원만 가능합니다.");
+			location.href = "${pageContext.request.contextPath}/notice";
+		</script>
+	</c:if>
+
 	<div class="wrap-header">
 		<header>
 			<div>
@@ -180,6 +215,36 @@ header>.main-menu {
 			</tr>
 		</table>
 	</div>
+
+	<table class="noticeFill">
+		<form action="<%=request.getContextPath()%>/editnotice.do"
+			method="post">
+			<tr>
+				<td><strong>제목</strong></td>
+				<td class="ntitle"><input type="text" size="30" name="nTitle"
+					placeholder="제목을 입력하시오." required></td>
+			</tr>
+			<tr>
+				<td><br></td>
+			</tr>
+			<tr>
+				<td><strong>내용</strong></td>
+				<td class="ncontent"><textarea name="nContent" cols="50"
+						rows="10" placeholder="내용을 입력하시오." required></textarea>
+						<input type="hidden" name="noticeNo" value="${noticeNo}">
+						</td>
+			</tr>
+			<tr>
+				<td><br></td>
+			</tr>
+			<tr>
+
+				<td colspan="2" class="nsubmit"><button type="submit">글 수정</button></td>
+
+			</tr>
+		</form>
+	</table>
+
 	<div class="lower-content">
 		<table class="menu-button">
 			<tr>
@@ -190,6 +255,7 @@ header>.main-menu {
 			</tr>
 		</table>
 	</div>
+
 	<div>
 		<footer>
 			<p>서울특별시 강남구 테헤란로14길 6 [6층]</p>

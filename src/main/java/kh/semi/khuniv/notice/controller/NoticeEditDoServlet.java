@@ -7,28 +7,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.semi.khuniv.login.model.dto.LoginVo;
-import kh.semi.khuniv.notice.model.dto.NoticeVo;
+import kh.semi.khuniv.notice.model.dto.NoticeVoRes;
 import kh.semi.khuniv.notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class NoticeDoServlet
+ * Servlet implementation class NoticeEditDoServlet
  */
-@WebServlet("/newnotice.do")
-public class NoticeDoServlet extends HttpServlet {
+@WebServlet("/editnotice.do")
+public class NoticeEditDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private NoticeService service = new NoticeService();
-   
+  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("[jy] NoticeInsert.dopost");
-		String nTitle = request.getParameter("nTitle");
-		String nContent= request.getParameter("nContent");
-		LoginVo vo = (LoginVo)request.getSession().getAttribute("loginId");
-				
-		int result = service.insert(new NoticeVo(nTitle, nContent, vo.getMemberId()));
 		
-		response.sendRedirect(request.getContextPath() + "/notice");
+		System.out.println("[jy] NoticeEdit.dopost");
+		String nTitle = request.getParameter("nTitle");
+		String nContent = request.getParameter("nContent");
+		String noticeNo = request.getParameter("noticeNo");
+		
+		int result = service.edit(new NoticeVoRes(nTitle, nContent, noticeNo));
+		
+		response.sendRedirect(request.getContextPath() + "/selectnotice?noticeNo=" + noticeNo);
 	}
 
 }

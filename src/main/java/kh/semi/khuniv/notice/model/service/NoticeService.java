@@ -38,7 +38,7 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
-//공지사항 게시글 선택
+// 공지사항 게시글 선택
 	public NoticeVoRes selectOne(String noticeNo) {
 		NoticeVoRes result = null;
 		Connection conn = getConnectionKh();
@@ -47,7 +47,7 @@ public class NoticeService {
 		return result;
 	}
 
-//공지사항 페이징 처리
+// 공지사항 페이징 처리
 	public Map<String, Object> noticeList(int currentPage, int pageSize){
 		Connection conn = getConnectionKh();
 		int totalCnt= dao.getTotalCount(conn);
@@ -64,6 +64,15 @@ public class NoticeService {
 		close(conn);
 		return result;
 		
+	}
+	
+// 공지사항 게시글 수정
+	public int edit(NoticeVoRes vo) {
+		int result = 0;
+		Connection conn = getConnectionKh();
+		result = dao.edit(conn, vo);
+		close(conn);
+		return result;
 	}
 	
 }

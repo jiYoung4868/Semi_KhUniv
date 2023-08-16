@@ -47,8 +47,8 @@ public class LoginDoServlet extends HttpServlet {
 			response.sendRedirect(sendUrl + "/lmain");
 		} else {
 			System.out.println("[jy] 로그인 실패");
-			request.getSession().setAttribute("msg", "로그인 실패하였습니다.\n 아이디와 패스워드를 확인해주세요.");
-			response.sendRedirect(sendUrl + "/lmain");
+			request.getSession().setAttribute("msg", "로그인 실패하였습니다.");
+			response.sendRedirect(sendUrl + "/login");
 		}
 
 		

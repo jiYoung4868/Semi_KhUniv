@@ -29,7 +29,6 @@ public class NewCommentServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		System.out.println("[jy] CommentInsert.dopost");
 		String commentContent = request.getParameter("comment");
 		String noticeNo = request.getParameter("noticeNo");
@@ -38,7 +37,6 @@ public class NewCommentServlet extends HttpServlet {
 		int result = service.insert(new CommentVoRes(commenter, commentContent, noticeNo));
 	
 		response.sendRedirect(request.getContextPath()+ "/selectnotice?noticeNo=" + noticeNo);
-		// redirect 에서 noticeNO 번호를 받아오고 싶은데 어디서 받아와야할지 모르겠음
 	}
 
 }
