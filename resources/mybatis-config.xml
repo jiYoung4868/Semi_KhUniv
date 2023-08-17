@@ -10,8 +10,13 @@
 	<typeAliases>
 		<typeAlias type="kh.semi.khuniv.comment.model.dto.CommentVo"
 			alias="CommentVo" />
-		<typeAlias type="kh.semi.khuniv.comment.model.dto.CommentVoRes"
+		<typeAlias
+			type="kh.semi.khuniv.comment.model.dto.CommentVoRes"
 			alias="CommentVoRes" />
+		<typeAlias type="kh.semi.khuniv.student.model.dto.StudentVo"
+			alias="StudentVo" />
+		<typeAlias type="kh.semi.khuniv.professor.model.dto.ProfessorVo"
+			alias="ProfessorVo" />
 	</typeAliases>
 
 	<environments default="khUniv">
@@ -30,9 +35,9 @@
 
 
 	</environments>
-	
+
 	<mappers>
-		<mapper resource="mappers/comment-mapper.xml"/>
+		<mapper resource="mappers/comment-mapper.xml" />
 	</mappers>
 </configuration>
 

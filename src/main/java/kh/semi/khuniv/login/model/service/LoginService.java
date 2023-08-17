@@ -2,6 +2,9 @@ package kh.semi.khuniv.login.model.service;
 
 import java.sql.Connection;
 
+import org.apache.ibatis.session.SqlSession;
+
+import kh.semi.khuniv.common.mybatis.MyBatisTemplate;
 import kh.semi.khuniv.login.model.dao.LoginDao;
 import kh.semi.khuniv.login.model.dto.LoginVo;
 import kh.semi.khuniv.professor.model.dto.ProfessorVo;
@@ -14,16 +17,16 @@ public class LoginService {
 	
 	public LoginVo sLogin (StudentVo vo) {
 		LoginVo result = null;
-		Connection conn = getConnectionKh();
-		result = dao.sLogin(conn, vo);
-		close(conn);
+		SqlSession session = MyBatisTemplate.getSqlSession();
+		result = dao.sLogin(session, vo);
+		session.close();
 		return result;
 	}
 	public LoginVo pLogin (ProfessorVo vo) {
 		LoginVo result = null;
-		Connection conn = getConnectionKh();
-		result = dao.pLogin(conn, vo);
-		close(conn);
+		SqlSession session = MyBatisTemplate.getSqlSession();
+		result = dao.pLogin(session, vo);
+		session.close();
 		return result;
 	}
 }

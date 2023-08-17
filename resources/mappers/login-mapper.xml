@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="khUniv">
+
+	<resultMap type="StudentVo" id="CommentResultMap1">
+		<id property="studentNo" column="STUDENT_NO" />
+		<result property="studentName" column="STUDENT_NAME" />
+		<result property="studentPhone" column="STUDENT_PHONE" />
+		<result property="studentAddress" column="STUDENT_ADDRESS" />
+		<result property="departmentNo" column="DEPARTMENT_NO" />
+		<result property="studentPwd" column="STUDENT_PWD" />
+	</resultMap>
+
+	<resultMap type="ProfessorVo" id="CommentResultMap2">
+		<id property="professorNo" column="PROFESSOR_NO" />
+		<result property="professorName" column="PROFESSOR_NAME" />
+		<result property="professorPhone" column="PROFESSOR_PHONE" />
+		<result property="professorLevel" column="PROFESSOR_LEVEL" />
+		<result property="departmentNo" column="DEPARTMENT_NO" />
+		<result property="professorPwd" column="PROFESSOR_PWD" />
+	</resultMap>
+
+	<select id="studentLogin" parameterType="StudentVo">
+		SELECT STUDENT_NAME FROM STUDENT WHERE STUDENT_NO = #{studentNo} AND
+		STUDENT_PWD = #{studentPwd}
+	</select>
+
+	<select id="professorLogin" parameterType="ProfessorVo">
+		SELECT PROFESSOR_NAME FROM PROFESSOR WHERE PROFESSOR_NO = #{professorNo} AND
+		PROFESSOR_PWD = #{professorPwd}
+	</select>
+
+
+</mapper>
