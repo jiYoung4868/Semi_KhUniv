@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="khUniv">
+
+	<resultMap type="CommentVo" id="CommentResultMap1">
+		<id property="commentNo" column="COMMENT_NO" />
+		<result property="cWrittenTime" column="CWRITTEN_TIME" />
+		<result property="noticeNo" column="NOTICE_NO" />
+		<result property="commenter" column="COMMENTER" />
+		<result property="commentContent" column="COMMENT_CONTENT" />
+	</resultMap>
+
+	<resultMap type="CommentVoRes" id="CommentResultMap2">
+		<id property="noticeNo" column="NOTICE_NO" />
+		<result property="commenter" column="COMMENTER" />
+		<result property="commentContent" column="COMMENT_CONTENT" />
+	</resultMap>
+
+	<select id="commentList" resultMap="CommentResultMap1">
+		SELECT NOTICE_NO, COMMENT_NO,
+		MEMBER_NAME, COMMENT_CONTENT, CWRITTEN_TIME
+		FROM CMEMBER WHERE
+		NOTICE_NO= #{noticeNo}
+	</select>
+
+	<insert id="commentInsert" parameterType="CommentVoRes">
+		INSERT INTO "COMMENT"
+		VALUES (COMMENT_SEQ.NEXTVAL, default , #{noticeNo} , #{commenter},
+		#{commentContent})
+	</insert>
+
+	<delete id="commentDelete" parameterType="string">
+		DELETE FROM "COMMENT"
+		WHERE COMMENT_NO = #{commentNo}
+	</delete>
+
+</mapper>
