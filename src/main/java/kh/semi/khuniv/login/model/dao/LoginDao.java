@@ -15,9 +15,11 @@ import static kh.semi.khuniv.common.jdbc.JdbcTemplate.*;
 public class LoginDao {
 
 	public LoginVo sLogin(SqlSession session, StudentVo vo) {
-		System.out.println("[jy] LoginDao.sLogin studentVo:" + vo);
-		LoginVo result = session.selectOne("khUniv.studentLogin", vo);
-		System.out.println("[jy] LoginDao.sLogin return: " + result);
+		System.out.println("[jy] LoginDao.sLogin.studentVo:" + vo);
+		String studentName= session.selectOne("khUniv.studentLogin", vo);
+		System.out.println(studentName);
+		LoginVo result = new LoginVo(vo.getStudentNo(), studentName, 1);
+		System.out.println("[jy] LoginDao.sLogin.return: " + result);
 		return result;
 	}
 
