@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="khUniv">
+	<resultMap type="NoticeVo" id="NoticeResultMap1">
+		<id property="noticeNo" column="NOTICE_NO" />
+		<result property="noticeTitle" column="NOTICE_TITLE" />
+		<result property="noticeContent" column="NOTICE_CONTENT" />
+		<result property="nWrittenTime" column="NWRITTEN_TIME" />
+		<result property="writer" column="WRITER" />
+	</resultMap>
+
+	<resultMap type="NoticeVoRes" id="NoticeResultMap2">
+		<id property="noticeNo" column="NOTICE_NO" />
+		<result property="noticeTitle" column="NOTICE_TITLE" />
+		<result property="noticeContent" column="NOTICE_CONTENT" />
+		<result property="writer" column="WRITER" />
+	</resultMap>
+
+	<insert id="noticeInsert" parameterType="NoticeVo">
+		INSERT INTO NOTICE
+		VALUES (NOTICE_SEQ.NEXTVAL, #{noticeTitle} ,
+		#{noticeContent} ,
+		default, #{writer})
+	</insert>
+
+	<delete id="noticeDeleteC" parameterType="string">
+		DELETE FROM "COMMENT"
+		WHERE NOTICE_NO = #{noticeNo}
+	</delete>
+
+	<delete id="noticeDeleteN" parameterType="string">
+		DELETE FROM NOTICE
+		WHERE NOTICE_NO = #{noticeNo}
+	</delete>
+
+	<select id="noticeSelectOne" parameterType="string" resultMap="NoticeResultMap2">
+		SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, WRITER FROM NOTICE WHERE
+		NOTICE_NO = #{noticeNo}
+	</select>
+
+	<update id="noticeEdit" parameterType="NoticeVoRes">
+		UPDATE NOTICE SET NOTICE_TITLE = #{noticeTitle}, NOTICE_CONTENT =
+		#{noticeContent} WHERE NOTICE_NO = #{noticeNo}
+	</update>
+
+
+</mapper>

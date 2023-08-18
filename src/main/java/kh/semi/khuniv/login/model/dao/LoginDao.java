@@ -25,7 +25,7 @@ public class LoginDao {
 	public LoginVo pLogin(SqlSession session, ProfessorVo vo) {
 		System.out.println("[jy] LoginDao.pLogin vo:" + vo);
 		String professorName= session.selectOne("khUniv.professorLogin", vo);
-		LoginVo result = new LoginVo(vo.getProfessorNo(), professorName, 1);
+		LoginVo result = new LoginVo(vo.getProfessorNo(), professorName, 2);
 		System.out.println("[jy] LoginDao.pLogin return: " + result);
 		return result;
 	}

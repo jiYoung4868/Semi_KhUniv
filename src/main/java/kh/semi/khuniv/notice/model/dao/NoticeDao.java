@@ -7,94 +7,40 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kh.semi.khuniv.notice.model.dto.NoticeVo;
 import kh.semi.khuniv.notice.model.dto.NoticeVoRes;
 
 public class NoticeDao {
 
 	// 공지사항 게시글 추가
-	public int insert(Connection conn, NoticeVo vo) {
+	public int insert(SqlSession session, NoticeVo vo) {
 		System.out.println("[jy] NoticeDao.insert.vo:" + vo);
-		int result = 0;
-		String query = "INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL, ? , ? , default, ? )";
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, vo.getNoticeTitle());
-			pstmt.setString(2, vo.getNoticeContent());
-			pstmt.setString(3, vo.getWriter());
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
+		int result = session.insert("khUniv.noticeInsert", vo);
 		System.out.println("[jy] NoticeDao.insert.result: " + result);
 		return result;
 	}
 
 	// 공지사항 게시글 삭제
-	public int deleteC(Connection conn, String noticeNo) {
-
+	public int deleteC(SqlSession session, String noticeNo) {
 		System.out.println("[jy] NoticeDao.deleteC.noticeNo");
-		int result = 0;
-		String query = "DELETE FROM \"COMMENT\" WHERE NOTICE_NO = ?";
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, noticeNo);
-			result= pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
+		int result = session.delete("khUniv.noticeDeleteC", noticeNo);
 		System.out.println("[jy] NoticeDao.deleteC.result: " + result);
 		return result;
-
 	}
-	public int deleteN(Connection conn, String noticeNo) {
 
+	public int deleteN(SqlSession session, String noticeNo) {
 		System.out.println("[jy] NoticeDao.deleteN.noticeNo");
-		int result = 0;
-		String query = "DELETE FROM NOTICE WHERE NOTICE_NO = ?";
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, noticeNo);
-			result= pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
+		int result = session.delete("khUniv.noticeDeleteN", noticeNo);
 		System.out.println("[jy] NoticeDao.deleteN.result: " + result);
 		return result;
-
 	}
+
 	// 공지사항 게시글 선택
-	public NoticeVoRes selectOne(Connection conn, String noticeNo) {
+	public NoticeVoRes selectOne(SqlSession session, String noticeNo) {
 		System.out.println("[jy] NoticeDao.selectOne.noticeNo: " + noticeNo);
-		NoticeVoRes result = null;
-		String query = "SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, WRITER FROM NOTICE WHERE NOTICE_NO = ? ";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, noticeNo);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				result = new NoticeVoRes(rs.getString("NOTICE_NO"), rs.getString("NOTICE_TITLE"),
-						rs.getString("NOTICE_CONTENT"), rs.getString("WRITER"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-
-		}
+		NoticeVoRes result = session.selectOne("khUniv.noticeSelectOne", noticeNo);
 		System.out.println("[jy] NoticeDao.selectOne.result: " + result);
 		return result;
 	}
@@ -166,31 +112,14 @@ public class NoticeDao {
 	}
 
 //	 공지사항 게시글 수정
-	public int edit(Connection conn, NoticeVoRes vo) {
+	public int edit(SqlSession session, NoticeVoRes vo) {
 		System.out.println("[jy] NoticeDao.edit.vo: " + vo);
-		int result = 0;
-		String query = "UPDATE NOTICE SET NOTICE_TITLE = ?, NOTICE_CONTENT = ? WHERE NOTICE_NO = ?";
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, vo.getNoticeTitle());
-			pstmt.setString(2, vo.getNoticeContent());
-			pstmt.setString(3, vo.getNoticeNo());
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
+		int result = session.update("khUniv.noticeEdit", vo);
 		System.out.println("[jy] NoticeDao.edit.result: " + result);
 		return result;
 	}
 
 }
-
-
-
-
 
 //// 공지사항 게시판 리스트
 //public List<NoticeVo> noticeList(Connection conn) {

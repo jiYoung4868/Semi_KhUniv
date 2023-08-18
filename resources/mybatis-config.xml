@@ -15,31 +15,38 @@
 			alias="CommentVoRes" />
 		<typeAlias type="kh.semi.khuniv.student.model.dto.StudentVo"
 			alias="StudentVo" />
-		<typeAlias type="kh.semi.khuniv.professor.model.dto.ProfessorVo"
+		<typeAlias
+			type="kh.semi.khuniv.professor.model.dto.ProfessorVo"
 			alias="ProfessorVo" />
-	</typeAliases>
+		<typeAlias type="kh.semi.khuniv.notice.model.dto.NoticeVo"
+			alias="NoticeVo" />
+		<typeAlias
+			type="kh.semi.khuniv.notice.model.dto.NoticeVoRes"
+			alias="NoticeVoRes" />
+			</typeAliases>
 
-	<environments default="khUniv">
+		<environments default="khUniv">
 
-		<environment id="khUniv">
-			<transactionManager type="JDBC"></transactionManager>
-			<dataSource type="POOLED">
-				<property name="driver"
-					value="oracle.jdbc.driver.OracleDriver" />
-				<property name="url"
-					value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
-				<property name="username" value="SEMIJY" />
-				<property name="password" value="SEMIJY" />
-			</dataSource>
-		</environment>
+			<environment id="khUniv">
+				<transactionManager type="JDBC"></transactionManager>
+				<dataSource type="POOLED">
+					<property name="driver"
+						value="oracle.jdbc.driver.OracleDriver" />
+					<property name="url"
+						value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
+					<property name="username" value="SEMIJY" />
+					<property name="password" value="SEMIJY" />
+				</dataSource>
+			</environment>
 
 
-	</environments>
+		</environments>
 
-	<mappers>
-		<mapper resource="mappers/comment-mapper.xml" />
-		<mapper resource="mappers/login-mapper.xml" />
-	</mappers>
+		<mappers>
+			<mapper resource="mappers/comment-mapper.xml" />
+			<mapper resource="mappers/login-mapper.xml" />
+			<mapper resource="mappers/notice-mapper.xml" />
+		</mappers>
 </configuration>
 
 

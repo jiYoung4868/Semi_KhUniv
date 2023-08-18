@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+
+import kh.semi.khuniv.common.mybatis.MyBatisTemplate;
 import kh.semi.khuniv.notice.model.dao.NoticeDao;
 import kh.semi.khuniv.notice.model.dto.NoticeVo;
 import kh.semi.khuniv.notice.model.dto.NoticeVoRes;
@@ -25,31 +28,30 @@ public class NoticeService {
 // 공지사항 게시글 추가
 	public int insert(NoticeVo vo) {
 		int result = 0;
-		Connection conn = getConnectionKh();
-		result = dao.insert(conn, vo);
-		close(conn);
+		SqlSession session = MyBatisTemplate.getSqlSession();
+		result = dao.insert(session, vo);
+		session.close();
 		return result;
 	}
 // 공지사항 게시글 삭제
 	public int delete(String noticeNo) {
 		int result = 0;
-		Connection conn = getConnectionKh();
-		setAutoCommit(conn, false);
-		result = dao.deleteC(conn, noticeNo);
-		result = dao.deleteN(conn, noticeNo);
-		if(result!=1) {
-			rollback(conn);
-		}
-		else commit(conn);
-		close(conn);
+//		setAutoCommit(connse, false);
+		SqlSession session = MyBatisTemplate.getSqlSession();
+		result = dao.deleteC(session, noticeNo);
+		result = dao.deleteN(session, noticeNo);
+//		if(result!=1) {
+//			rollback(conn);
+//		}
+		session.close();
 		return result;
 	}
 // 공지사항 게시글 선택
 	public NoticeVoRes selectOne(String noticeNo) {
 		NoticeVoRes result = null;
-		Connection conn = getConnectionKh();
-		result = dao.selectOne(conn, noticeNo);
-		close(conn);
+		SqlSession session = MyBatisTemplate.getSqlSession();
+		result = dao.selectOne(session, noticeNo);
+		session.close();
 		return result;
 	}
 
@@ -75,9 +77,9 @@ public class NoticeService {
 // 공지사항 게시글 수정
 	public int edit(NoticeVoRes vo) {
 		int result = 0;
-		Connection conn = getConnectionKh();
-		result = dao.edit(conn, vo);
-		close(conn);
+		SqlSession session = MyBatisTemplate.getSqlSession();
+		result = dao.edit(session, vo);
+		session.close();
 		return result;
 	}
 	

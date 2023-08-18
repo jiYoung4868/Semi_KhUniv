@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="khUniv">
 
-	<resultMap type="StudentVo" id="CommentResultMap3">
+	<resultMap type="StudentVo" id="LoginResultMap1">
 		<id property="studentNo" column="STUDENT_NO" />
 		<result property="studentName" column="STUDENT_NAME" />
 		<result property="studentPhone" column="STUDENT_PHONE" />
@@ -11,7 +11,7 @@
 		<result property="studentPwd" column="STUDENT_PWD" />
 	</resultMap>
 
-	<resultMap type="ProfessorVo" id="CommentResultMap4">
+	<resultMap type="ProfessorVo" id="LoginResultMap2">
 		<id property="professorNo" column="PROFESSOR_NO" />
 		<result property="professorName" column="PROFESSOR_NAME" />
 		<result property="professorPhone" column="PROFESSOR_PHONE" />
