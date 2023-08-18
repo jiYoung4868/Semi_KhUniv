@@ -21,14 +21,15 @@
 	</resultMap>
 
 	<select id="studentLogin" resultType="string" parameterType="StudentVo">
-		SELECT STUDENT_NAME FROM STUDENT WHERE STUDENT_NO = #{studentNo} AND
-		STUDENT_PWD = #{studentPwd}
+		SELECT STUDENT_NAME FROM STUDENT WHERE STUDENT_NO= #{studentNo} AND
+		STUDENT_PWD= #{studentPwd}
 	</select>
 
-	<select id="professorLogin" resultType="ProfessorVo">
-		SELECT PROFESSOR_NAME FROM PROFESSOR WHERE PROFESSOR_NO = #{professorNo} AND
-		PROFESSOR_PWD = #{professorPwd}
+	<select id="professorLogin" resultType="string" parameterType="ProfessorVo">
+		SELECT PROFESSOR_NAME FROM PROFESSOR WHERE PROFESSOR_NO= #{professorNo} AND
+		PROFESSOR_PWD= #{professorPwd}
 	</select>
+	
 
 
 </mapper>
