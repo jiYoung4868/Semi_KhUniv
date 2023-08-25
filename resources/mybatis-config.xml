@@ -4,6 +4,7 @@
 
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" /> <!-- 널값처리 -->
+
 		<setting name="mapUnderscoreToCamelCase" value="true" /> <!-- 언더바 카멜기법 -->
 	</settings>
 
